@@ -1,0 +1,115 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #343541;
+    color: #000;
+}
+
+.welcome-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.welcome-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid red;
+    border-radius: 16px;
+    width: 95%;
+    min-width: 200px;
+    max-width: 450px;
+    background-color: #fff;
+}
+
+.welcome-card .heading{
+    text-align: center;
+    /* border: 1px solid #000; */
+    width: 100%;
+}
+
+.welcome-card .inputs {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 0 0;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.welcome-card .inputs  p {
+    font-size: smaller;
+    font-weight: bold;
+    color: red;
+}
+
+.welcome-card .inputs input {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 85%;
+    margin: 0 0 .8rem 0;
+    border-radius: .5rem;
+    outline-color: blue;
+}
+
+
+
+.welcome-card .inputs button {
+    width: 50%;
+    margin: 0 0 0 0;
+    border-radius: .5rem;
+}
+
+.text-container {
+    border: 1px solid blue;
+    padding: 1rem;
+}
+
+.text-div {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 1rem;
+    border: 1px solid #fff;
+    overflow: scroll;
+    max-height: 55vh;
+}
+
+.text-div p {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid yellow;
+    padding: .5rem;
+    margin: 0 0 1rem 0;
+}
+
+.text-div p:last-child {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid yellow;
+    padding: .5rem;
+    margin: 0 0 0 0;
+}
+
+.inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0 0 0;
+}
+
+.inputs input {
+    width: 50%;
+    margin: 0 1rem 0 0;
+    padding: .5rem;
+}
+
+.inputs button {
+    padding: .5rem 2rem;
+}
