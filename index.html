@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    //start
      <div class="welcome-main">
         <div class="welcome-card">
             <div class="heading"><h2>WELCOME</h2></div>
@@ -14,8 +15,38 @@
                 <p id="username-msg">Username is not valid</p>
                 <input type="text" placeholder="Username" id="username">
                 <p id="email-msg">Email is not valid</p>
-                <input type="text" placeholder="Email" id="email">
+                <input type="email" placeholder="Email" id="email">
                 <button id="submitBtn">DONE</button>
+            </div>
+        </div>
+     </div>
+     //end
+     <div class="dashboard-main">
+        <div class="dashboard-card">
+            <div class="dashboard-inputs">
+                <input type="text" placeholder="Click to add activity" id="dashboardInput">
+            </div>
+            <div class="grid-layout">
+                <div class="layout">
+                    <div class="tasks">
+                        <div class="tasks-heading"><p>Tasks</p></div>
+                        <div class="tasks-count"><p id="taskCount">0</p></div>
+                    </div>
+                    <div class="remaining">
+                        <div class="remaining-heading"><p>Remaining</p></div>
+                        <div class="remaining-count"><p id="remainingCount">0</p></div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="completed">
+                        <div class="completed-heading"><p>Completed</p></div>
+                        <div class="completed-count"><p id="completedCount">0</p></div>
+                    </div>
+                    <div class="completed">
+                        <div class="completed-heading"><p>Completed</p></div>
+                        <div class="completed-count"><p id="completedCount">0</p></div>
+                    </div>
+                </div>
             </div>
         </div>
      </div>
