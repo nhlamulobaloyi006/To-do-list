@@ -1,9 +1,16 @@
-import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv} from "./script.js";
-import { validateUsername, validateEmail, disableByDefault} from "./script.js";
+import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv, profilePic, profileDiv} from "./script.js";
+import { validateUsername, validateEmail, disableByDefault, validateInput, dashboard} from "./script.js";
 
 let storeCredentials = []
+let profile = []
 let dashboardInfo = []
 let activities = []
+
+function profilePicture(getValue) {
+    profilePic.textContent = getValue;
+}
+
+
 
 disableByDefault()
 
@@ -13,7 +20,9 @@ function getUserCredentials() {
     if (load) {
         const convert = JSON.parse(localStorage.getItem("userlogin"));
         console.log(convert);
+        profile = [convert]
         storeCredentials = [...convert]
+        profilePicture(storeCredentials[0]["username"][0].toUpperCase());
         console.log(storeCredentials)
         welcomeMain.style.display = "none";
         dashboardMain.style.display = "flex";
@@ -37,38 +46,8 @@ function getActivities(){
         taskCount.textContent = activities.length;
         remainingCount.textContent = activities.length;
         totalCount.textContent = activities.length;
-
-        const activityDiv = document.createElement("div");
-        const newActivityValue = document.createElement("p");
-        const editActivty = document.createElement("p");
-        const deleteActivity = document.createElement("p");
-        const doneActivity = document.createElement("p");
-        const newItemsDiv = document.createElement("div");
-
-        editActivty.textContent = "✏";
-        editActivty.className = "editActivty";
-        deleteActivity.textContent = "🗑";
-        deleteActivity.className = "deleteActivity";
-        doneActivity.textContent = "✔";
-        doneActivity.className = "doneActivity";
-
-        newItemsDiv.className = "items";
-
-        newActivityValue.id = "activityValue"
-        newActivityValue.textContent = activities[i];
-
-        activityDiv.className = "activity";
-
-        activityDiv.style.display = "flex";
-
-        newItemsDiv.appendChild(editActivty)
-        newItemsDiv.appendChild(deleteActivity)
-        newItemsDiv.appendChild(doneActivity)
-
         
-        activityDiv.appendChild(newActivityValue)
-        activityDiv.appendChild(newItemsDiv)
-        activityContainer.appendChild(activityDiv)
+        manipulateTask(activities[i]);
     }
 }
 
@@ -102,15 +81,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
         dashboardMain.style.display = "none";
         welcomeMain.style.display = "none"; 
     });
-    
+    profileDiv.addEventListener("click", function(){
+        dashboard();
+    });
 
 });
-function renderTask() {
-    const value = activityInput.value;
-    activities.push(value);
 
-    console.log(activities)
-        
+
+
+function manipulateTask(newValue) {
+       
     const activityDiv = document.createElement("div");
     const newActivityValue = document.createElement("p");
     const editActivty = document.createElement("p");
@@ -129,7 +109,7 @@ function renderTask() {
     newItemsDiv.className = "items";
 
     newActivityValue.id = "activityValue"
-    newActivityValue.textContent = value;
+    newActivityValue.textContent = newValue;
 
     activityDiv.className = "activity";
 
@@ -144,6 +124,19 @@ function renderTask() {
     activityDiv.appendChild(newItemsDiv)
     activityContainer.appendChild(activityDiv)
 
+    newActivityValue.scrollIntoView({
+        behavior:"smooth",
+        block:"end"
+    })
+
+}
+
+function renderTask() {
+    const value = activityInput.value;
+    activities.push(value);
+
+    console.log(activities)
+    manipulateTask(value);     
     localStorage.setItem("activities", JSON.stringify(activities));
 
 }
@@ -154,6 +147,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
         renderTask();
 
         clearInput.value = "";
+        disableByDefault();
+    });
+    activityInput.addEventListener("input", function(){
+        validateInput();
     });
 })
 

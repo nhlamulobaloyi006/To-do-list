@@ -7,6 +7,7 @@ export const activityContainer = document.querySelector(".activities-container")
 //Child-divs
 export const activityDiv = document.querySelector(".activity");
 export const itemsDiv = document.querySelector(".items");
+export const profileDiv = document.querySelector(".profile");
 export const addActivityBtn = document.getElementById("addActivity");
 //error messages
 export const usernameMsg = document.getElementById("username-msg");
@@ -27,10 +28,13 @@ export const totalCount = document.getElementById("totalCount");
 export const dashboardInput = document.getElementById("dashboardInput");
 export const activityValue = document.getElementById("activityValue");
 export const activityInput = document.getElementById("activityInput");
+export const profilePic = document.getElementById("profilePic");
 
 export function disableByDefault() {
     submitBtn.disabled = true;
     submitBtn.style.cursor = "not-allowed";
+    addActivityBtn.style.display = "none";
+    profileDiv.style.display = "flex";
 }
 disableByDefault()
 
@@ -79,7 +83,25 @@ export function validateEmail() {
     }
 }
 
+export function validateInput() {
+    if (activityInput.value.trim().length <= 0){
+        addActivityBtn.style.display = "none";
+        profileDiv.style.display = "flex";
 
+    }
+    else if (activityInput.value.trim().length > 0) {
+        profileDiv.style.display = "none";
+        addActivityBtn.classList.add("active");
+        addActivityBtn.style.display = "block";
 
+        
+    }
+}
+
+export function dashboard() {
+    activityMain.style.display = "none";
+    dashboardMain.style.display = "flex";
+    location.reload();
+}
 
 

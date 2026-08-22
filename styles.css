@@ -240,6 +240,16 @@ body {
     cursor: pointer;
 }
 
+.active {
+    display: flex;
+    padding: .5rem ;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 0 .5rem 0 0;
+    cursor: pointer;
+}
+
 .activity-inputs  input {
     padding: .5rem ;
     width: 90%;
@@ -250,8 +260,12 @@ body {
 
 .activity-inputs .profile {
     display: none;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #000;
     border-radius: 50%;
+    background-color: blue;
+    cursor: pointer;
     width: 50px;
     height: 50px;
 }
@@ -269,7 +283,7 @@ body {
 #activityValue {
     overflow-wrap: break-word;
     max-width: 265px;
-    width: 100%;
+    width: fit-content;
     padding: .5rem;
     border-radius: .5rem;
     background-color: #333;
@@ -282,6 +296,7 @@ body {
     padding: .5rem;
     width: 100%;
     margin: 0 0 1rem 0;
+    flex-wrap: wrap;
     border: 1px solid red;
     border-radius: .5rem;
     background-color: blue;
