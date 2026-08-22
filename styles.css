@@ -11,7 +11,7 @@ body {
 }
 /* start */
 .welcome-main {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -40,12 +40,19 @@ body {
 .welcome-card .inputs {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 2rem 0 0 0;
     /* border: 1px solid red; */
     width: 100%;
 }
 
+.welcome-card .inputs button {
+    padding: .5rem 2rem;
+}
+
 .welcome-card .inputs  p {
+
     font-size: .8rem;
     font-weight: bold;
     color: red;
@@ -54,6 +61,7 @@ body {
 .welcome-card .inputs input {
     font-family: Arial, Helvetica, sans-serif;
     width: 85%;
+    padding: .5rem;
     margin: 0 0 .8rem 0;
     border-radius: .5rem;
     outline-color: #000;
@@ -69,7 +77,7 @@ body {
 /* End */
 
 .dashboard-main {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -96,7 +104,7 @@ body {
     width: 100%;
 }
 
-.dashboard-inputs input {
+.dashboard-inputs  input {
     padding: .5rem ;
     border-radius: .5rem;
     border: 1px solid #000;
@@ -107,79 +115,192 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 2rem 0 0 0;
+    margin: 3.5rem 0 0 0;
     width: 100%;
     border: 1px solid #000;
 }
+
+
 
 .layout {
     display: flex;
     width: 75%;
     border: 1px solid yellow;
+    gap: .3rem;
+    margin: .2rem;
 }
 
 .tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     width: 100%;
+    padding: 3rem 0;
     height: 10vh;
     border: 1px solid red;
+    border-radius: .8rem;
 }
 
 .remaining {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     width: 100%;
+    padding: 3rem 0;
+    height: 10vh;
     border: 1px solid red;
+    border-radius: .8rem;
 }
 
 .completed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     width: 100%;
+    padding: 3rem 0;
+    height: 10vh;
     border: 1px solid red;
+    border-radius: .8rem;
 }
 
-.text-container {
-    border: 1px solid blue;
-    padding: 1rem;
-}
-
-.text-div {
+.total {
     display: flex;
-    flex-direction: column-reverse;
-    padding: 1rem;
-    border: 1px solid #fff;
-    overflow: scroll;
-    max-height: 55vh;
-}
-
-.text-div p {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    border: 1px solid yellow;
-    padding: .5rem;
-    margin: 0 0 1rem 0;
+    width: 100%;
+    padding: 3rem 0;
+    height: 10vh;
+    border: 1px solid red;
+    border-radius: .8rem;
+
 }
 
-.text-div p:last-child {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    border: 1px solid yellow;
-    padding: .5rem;
-    margin: 0 0 0 0;
+#taskCount {
+    font-size: 2em;
+}
+#remainingCount {
+    font-size: 2em;
+}
+#completedCount {
+    font-size: 2em;
+}
+#totalCount {
+    font-size: 2em;
 }
 
-.inputs {
+.activity-main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0 0 0;
+    min-height: 100vh;
 }
 
-.inputs input {
-    width: 50%;
-    margin: 0 1rem 0 0;
+.activity-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid red;
+    border-radius: 16px;
+    width: 95%;
+    min-width: 200px;
+    max-width: 500px;
+    background-color: #fff;
+}
+
+.activity-inputs  {
+    display: flex;
+    border: 1px solid red; 
+    width: 100%;
+}
+
+.activity-inputs  input {
+    padding: .5rem ;
+    width: 90%;
+    border-radius: .5rem;
+    margin: 0 .5rem 0 0;
+    border: 1px solid #000;
+}
+
+.activity-inputs  button {
+    padding: .5rem ;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 0 .5rem 0 0;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.activity-inputs  input {
+    padding: .5rem ;
+    width: 90%;
+    border-radius: .5rem;
+    margin: 0 .5rem 0 0;
+    border: 1px solid #000;
+}
+
+.activity-inputs .profile {
+    display: none;
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.activities-container {
+    color: #fff;
     padding: .5rem;
+    margin: 2.5rem 0 0 0;
+    width: 100%;
+    border: 1px solid #000;
 }
 
-.inputs button {
-    padding: .5rem 2rem;
+#activityValue {
+    overflow-wrap: break-word;
+    max-width: 265px;
+    padding: .5rem;
+    border-radius: .5rem;
+    background-color: #333;
+}
+
+.activities-container .activity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    border: 1px solid red;
+    border-radius: .5rem;
+    background-color: blue;
+    border-radius: .5rem;
+}
+
+.activities-container .activity .items {
+    display: flex;
+    border: 1px solid #000;
+    background-color: #333;
+    width: fit-content;
+    border-radius: .5rem;
+    margin: 0 0 0 1rem;
+    gap: .5rem;
+    
+    
+}
+
+.items .editActivty, .deleteActivity, .doneActivity {
+    padding: .7rem;
+    border: 1px solid #000;
+}
+
+.items p {
+    cursor: pointer;
 }
