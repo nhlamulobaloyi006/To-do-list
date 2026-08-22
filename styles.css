@@ -11,7 +11,7 @@ body {
 }
 /* start */
 .welcome-main {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -197,7 +197,7 @@ body {
 }
 
 .activity-main {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -237,7 +237,6 @@ body {
     width: 50px;
     height: 50px;
     margin: 0 .5rem 0 0;
-    border: 1px solid #000;
     cursor: pointer;
 }
 
@@ -303,4 +302,8 @@ body {
 
 .items p {
     cursor: pointer;
+}
+
+.no-cursor {
+    cursor: not-allowed;
 }
