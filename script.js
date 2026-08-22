@@ -2,7 +2,12 @@
 export const welcomeMain = document.querySelector(".welcome-main");
 export const dashboardMain = document.querySelector(".dashboard-main");
 export const activityMain = document.querySelector(".activity-main");
+export const activityContainer = document.querySelector(".activities-container");
 
+//Child-divs
+export const activityDiv = document.querySelector(".activity");
+export const itemsDiv = document.querySelector(".items");
+export const addActivityBtn = document.getElementById("addActivity");
 //error messages
 export const usernameMsg = document.getElementById("username-msg");
 export const emailMsg = document.getElementById("email-msg");
@@ -16,10 +21,12 @@ export const submitBtn = document.getElementById("submitBtn");
 export const taskCount = document.getElementById("taskCount");
 export const remainingCount = document.getElementById("remainingCount");
 export const completedCount = document.getElementById("completedCount");
-export const totalCount = document.getElementById("completedCount");
+export const totalCount = document.getElementById("totalCount");
 
 //
 export const dashboardInput = document.getElementById("dashboardInput");
+export const activityValue = document.getElementById("activityValue");
+export const activityInput = document.getElementById("activityInput");
 
 export function disableByDefault() {
     submitBtn.disabled = true;

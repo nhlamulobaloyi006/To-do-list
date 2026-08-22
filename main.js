@@ -1,7 +1,9 @@
-import { welcomeMain, dashboardMain, activityMain, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput } from "./script.js";
+import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv} from "./script.js";
 import { validateUsername, validateEmail, disableByDefault} from "./script.js";
 
 let storeCredentials = []
+let dashboardInfo = []
+let activities = []
 
 disableByDefault()
 
@@ -21,6 +23,56 @@ function getUserCredentials() {
 }
 
 getUserCredentials();
+
+function getActivities(){
+    const load = localStorage.getItem("activities");
+
+    if (load) {
+        const convert = JSON.parse(localStorage.getItem("activities"));
+        activities = [...convert]
+        console.log(convert);
+    }
+
+    for (let i = 0; i < activities.length; i++) {
+        taskCount.textContent = activities.length;
+        remainingCount.textContent = activities.length;
+        totalCount.textContent = activities.length;
+
+        const activityDiv = document.createElement("div");
+        const newActivityValue = document.createElement("p");
+        const editActivty = document.createElement("p");
+        const deleteActivity = document.createElement("p");
+        const doneActivity = document.createElement("p");
+        const newItemsDiv = document.createElement("div");
+
+        editActivty.textContent = "✏";
+        editActivty.className = "editActivty";
+        deleteActivity.textContent = "🗑";
+        deleteActivity.className = "deleteActivity";
+        doneActivity.textContent = "✔";
+        doneActivity.className = "doneActivity";
+
+        newItemsDiv.className = "items";
+
+        newActivityValue.id = "activityValue"
+        newActivityValue.textContent = activities[i];
+
+        activityDiv.className = "activity";
+
+        activityDiv.style.display = "flex";
+
+        newItemsDiv.appendChild(editActivty)
+        newItemsDiv.appendChild(deleteActivity)
+        newItemsDiv.appendChild(doneActivity)
+
+        
+        activityDiv.appendChild(newActivityValue)
+        activityDiv.appendChild(newItemsDiv)
+        activityContainer.appendChild(activityDiv)
+    }
+}
+
+getActivities()
 
 document.addEventListener("DOMContentLoaded", ()=>{
     username.addEventListener("input", () => {
@@ -50,11 +102,61 @@ document.addEventListener("DOMContentLoaded", ()=>{
         dashboardMain.style.display = "none";
         welcomeMain.style.display = "none"; 
     });
+    
+
 });
+function renderTask() {
+    const value = activityInput.value;
+    activities.push(value);
+
+    console.log(activities)
+        
+    const activityDiv = document.createElement("div");
+    const newActivityValue = document.createElement("p");
+    const editActivty = document.createElement("p");
+    const deleteActivity = document.createElement("p");
+    const doneActivity = document.createElement("p");
+    const newItemsDiv = document.createElement("div");
 
 
+    editActivty.textContent = "✏";
+    editActivty.className = "editActivty";
+    deleteActivity.textContent = "🗑";
+    deleteActivity.className = "deleteActivity";
+    doneActivity.textContent = "✔";
+    doneActivity.className = "doneActivity";
 
-function waning() {
-    alert("hy")
+    newItemsDiv.className = "items";
+
+    newActivityValue.id = "activityValue"
+    newActivityValue.textContent = value;
+
+    activityDiv.className = "activity";
+
+    activityDiv.style.display = "flex";
+
+    newItemsDiv.appendChild(editActivty)
+    newItemsDiv.appendChild(deleteActivity)
+    newItemsDiv.appendChild(doneActivity)
+
+    
+    activityDiv.appendChild(newActivityValue)
+    activityDiv.appendChild(newItemsDiv)
+    activityContainer.appendChild(activityDiv)
+
+    localStorage.setItem("activities", JSON.stringify(activities));
+
 }
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    addActivityBtn.addEventListener("click", function(){
+        const clearInput = document.getElementById("activityInput");
+        renderTask();
+
+        clearInput.value = "";
+    });
+})
+
+
+
 

@@ -261,22 +261,27 @@ body {
     padding: .5rem;
     margin: 2.5rem 0 0 0;
     width: 100%;
+    overflow: scroll;
+    max-height: 350px;
     border: 1px solid #000;
 }
 
 #activityValue {
     overflow-wrap: break-word;
     max-width: 265px;
+    width: 100%;
     padding: .5rem;
     border-radius: .5rem;
     background-color: #333;
 }
 
 .activities-container .activity {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     padding: .5rem;
+    width: 100%;
+    margin: 0 0 1rem 0;
     border: 1px solid red;
     border-radius: .5rem;
     background-color: blue;
@@ -297,7 +302,7 @@ body {
 
 .items .editActivty, .deleteActivity, .doneActivity {
     padding: .7rem;
-    border: 1px solid #000;
+    border: 1px solid #fff;
 }
 
 .items p {
