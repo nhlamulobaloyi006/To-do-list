@@ -9,6 +9,7 @@ export const activityDiv = document.querySelector(".activity");
 export const itemsDiv = document.querySelector(".items");
 export const profileDiv = document.querySelector(".profile");
 export const addActivityBtn = document.getElementById("addActivity");
+export const editActivityBtn = document.getElementById("editActivity");
 //error messages
 export const usernameMsg = document.getElementById("username-msg");
 export const emailMsg = document.getElementById("email-msg");

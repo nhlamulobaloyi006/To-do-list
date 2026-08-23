@@ -1,4 +1,4 @@
-import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv, profilePic, profileDiv} from "./script.js";
+import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv, profilePic, profileDiv, editActivityBtn} from "./script.js";
 import { validateUsername, validateEmail, disableByDefault, validateInput, dashboard} from "./script.js";
 
 let storeCredentials = []
@@ -114,6 +114,23 @@ function manipulateTask(newValue) {
     activityDiv.className = "activity";
 
     activityDiv.style.display = "flex";
+
+    editActivty.addEventListener("click", ()=>{
+        addActivityBtn.style.display = "none";
+        profileDiv.style.display = "none"; 
+        editActivityBtn.style.display = "block"
+        const editValue = activityInput;
+        editValue.value = newValue;
+
+        editActivityBtn.addEventListener("click",()=>{
+            const clearInput = document.getElementById("activityInput");
+            newActivityValue.textContent = editValue.value;
+            editActivityBtn.style.display = "none";
+            
+
+            clearInput.value = "";
+        })
+    })
 
     newItemsDiv.appendChild(editActivty)
     newItemsDiv.appendChild(deleteActivity)

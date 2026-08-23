@@ -262,6 +262,7 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
+    margin: 0 .5rem 0 0;
     border: 1px solid #000;
     border-radius: 50%;
     background-color: blue;
@@ -314,6 +315,10 @@ body {
     
     
 }
+#editActivity {
+    display: none;
+}
+
 
 .items .editActivty, .deleteActivity, .doneActivity {
     padding: .7rem;
