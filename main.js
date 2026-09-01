@@ -1,9 +1,13 @@
 import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv, profilePic, profileDiv, editActivityBtn, editInput} from "./script.js";
-import { validateUsername, validateEmail, disableByDefault, validateInput, dashboard, userProfile, hideDashboard, showDashboard, enableSubmitBtn, renderTaskBtn} from "./script.js";
+import { validateUsername, validateEmail, disableByDefault, validateInput, dashboard, userProfile, hideDashboard, showDashboard, enableSubmitBtn, renderTaskBtn, editInputAct, editInputValidation, editButtonEnable} from "./script.js";
+
 
 export let loginCredentials = []
 export let activities = []
 let totalActivityCount = []
+let editIndex = []
+
+
 
 
 function getUserCredentials() {
@@ -18,50 +22,110 @@ function getUserCredentials() {
 
         userProfile();
     }
-
+    
     console.log(loginCredentials)
 }
 
 getUserCredentials()
 
 function loadActivities() {
+    activityContainer.innerHTML = "";
     const savedActivity = localStorage.getItem("activities");
 
     if (savedActivity) {
         const convert  = JSON.parse(localStorage.getItem("activities"));
         activities = [...convert]
+
+        for (let i = 0; i < activities.length; i++) {
+        
+            const activityPar = document.createElement("p");
+            const activityDivEL = document.createElement("div");
+            const itemsDiv = document.createElement("div")
+            const editActivtyDiv = document.createElement("div")
+            const deleteActivityDiv = document.createElement("div")
+            const doneActivityDiv = document.createElement("div")
+            const editActBtn = document.createElement("button")
+
+
+            const editPar = document.createElement("p")
+            const deletePar = document.createElement("p")
+            const donePar = document.createElement("p")
+
+            editActBtn.textContent = "ED";
+            editActBtn.id = "editActivityBtn";
+
+            
+
+            editPar.textContent = "✏";
+            deletePar.textContent = "🗑";
+            donePar.textContent = "✔";
+
+            activityDivEL.style.display = "flex";
+            activityPar.textContent = activities[i];
+            activityPar.id = "activityValue";
+            activityDivEL.className = "activity";
+
+            editActivtyDiv.className = "editActivty";
+            deleteActivityDiv.className = "deleteActivity";
+            doneActivityDiv.className = "doneActivity";
+
+            itemsDiv.className = "items";
+
+            editInput.addEventListener("input", function(){
+                editInputValidation()
+                
+            });      
+
+            editActivtyDiv.addEventListener("click", function(){
+                editButtonEnable();
+                editInputAct()
+                const value = activities[i];
+
+                editInput.value = value;
+                const checkIndex = activities.indexOf(activities[i]);
+                editIndex = [checkIndex]
+                alert(`Index is at ${activities.indexOf(activities[i])}`);
+
+            });
+
+            deleteActivityDiv.addEventListener("click", ()=>{
+                /* activityDivEL.remove(); */
+                const checkIndex = activities.indexOf(activities[i]);
+
+                if (checkIndex > -1) {
+                    activities.splice(checkIndex, 1)
+                }
+
+                activityDivEL.remove();
+
+                
+                console.log("Button clicked")
+                console.log(checkIndex)
+
+                
+                console.log(activities)
+
+                localStorage.setItem("activities", JSON.stringify(activities));
+                loadActivities();
+                
+            });
+            
+    
+            editActivtyDiv.appendChild(editPar)
+            deleteActivityDiv.appendChild(deletePar)
+            doneActivityDiv.appendChild(donePar)
+            itemsDiv.appendChild(editActivtyDiv)
+            itemsDiv.appendChild(deleteActivityDiv)
+            itemsDiv.appendChild(doneActivityDiv)
+            activityDivEL.appendChild(activityPar);
+            activityDivEL.appendChild(itemsDiv);
+            activityContainer.appendChild(activityDivEL);
+            
+        }
+
     }
 
-    for (let i = 0; i < activities.length; i++) {
-        
-        const activityPar = document.createElement("p");
-        const activityDivEL = document.createElement("div");
-        const itemsDiv = document.createElement("div")
-        const editActivtyDiv = document.createElement("div")
-        const deleteActivityDiv = document.createElement("div")
-        const doneActivityDiv = document.createElement("div")
-
-
-        activityDivEL.style.display = "flex";
-        activityPar.textContent = activities[i];
-        activityPar.id = "activityValue";
-        activityDivEL.className = "activity";
-
-        editActivtyDiv.className = "editActivty";
-        deleteActivityDiv.className = "deleteActivty";
-        doneActivityDiv.className = "doneActivty";
-
-        itemsDiv.className = "items"
-
-        itemsDiv.appendChild(editActivtyDiv)
-        itemsDiv.appendChild(deleteActivityDiv)
-        itemsDiv.appendChild(doneActivityDiv)
-        activityDivEL.appendChild(activityPar);
-        activityContainer.appendChild(activityDivEL);
-        activityContainer.appendChild(itemsDiv);
-        
-    }
-
+   
     console.log(activities);
     
 }
@@ -69,13 +133,31 @@ function loadActivities() {
 loadActivities() 
 
 function dashboardInfo() {
-    taskCount.textContent = activities.length;
-    remainingCount.textContent = activities.length;
-    completedCount.textContent = activities.length;
-    totalCount.textContent = activities.length;
+
+    loadActivities();
+
+    if (activities.length === 0 || []) {
+        taskCount.textContent = 0;
+        remainingCount.textContent = 0;
+        completedCount.textContent = 0;
+        totalCount.textContent = 0;
+    }
+    
+    if (activities.length > 0) {
+        taskCount.textContent = activities.length;
+        remainingCount.textContent = activities.length;
+        completedCount.textContent = activities.length;
+        totalCount.textContent = activities.length;
+    }
+
+    console.log("Thia for ac");
+    console.log(activities);
+    
+    
 }
 
 dashboardInfo()
+
 
 disableByDefault()
 username.addEventListener("input", function(){
@@ -109,6 +191,7 @@ dashboardInput.addEventListener("click", function(){
 });
 
 profileDiv.addEventListener("click", function(){
+    loadActivities();
    showDashboard();
 });
 
@@ -118,6 +201,7 @@ activityInput.addEventListener("input", function(){
 });
 
 addActivityBtn.addEventListener("click", function(){
+    activityContainer.innerHTML = "";
     const clearInput = document.getElementById("activityInput");
     renderTaskBtn();
 
@@ -127,15 +211,41 @@ addActivityBtn.addEventListener("click", function(){
     localStorage.setItem("activities", JSON.stringify(activities));
     dashboardInfo();
     disableByDefault();
+    loadActivities();
 });
 
 
-    document.addEventListener("keydown", (e)=>{
-        if (e.key === "Enter") {
+editActivityBtn.addEventListener("click", ()=>{
+    activityContainer.innerHTML = "";
+    const newValue = editInput.value;
+    const index = Number(editIndex);
+    activities[index] = newValue;
+                
+                
+                
+
+    console.log(`new value: ${newValue}`)
+
+    editInput.style.display = "none";
+    activityInput.style.display = "flex";
+    enableSubmitBtn(); 
+    console.log(activities)
+                
+    localStorage.setItem("activities", JSON.stringify(activities));
+    loadActivities();
+
+    dashboardInfo()
+});
+
+     
+
+document.addEventListener("keydown", (e)=>{
+    if (e.key === "Enter") {
             addActivityBtn.click();
             
             
-        }
-        enableSubmitBtn();
-        disableByDefault();
-    })
+    }
+    enableSubmitBtn();
+    disableByDefault();
+})
+

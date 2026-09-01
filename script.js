@@ -133,6 +133,7 @@ export function enableSubmitBtn() {
     if (activityInput.value.trim().length <= 0) {
         addActivityBtn.disabled = true;
         addActivityBtn.style.display = "none";
+        editActivityBtn.style.display = "none";
         profileDiv.style.display = "flex";
         
     }
@@ -143,14 +144,88 @@ export function renderTaskBtn() {
     activities.push(value);
 
 
-    const activityPar = document.createElement("p");
-    const activityDivEL = document.createElement("div");
-    activityDivEL.style.display = "flex";
-    activityPar.textContent = value;
-    activityPar.id = "activityValue";
-    activityDivEL.className = "activity";
 
-    activityDivEL.appendChild(activityPar);
-    activityContainer.appendChild(activityDivEL);
+    /* dashboardMain.style.display = "none";
+
+
+     const activityPar = document.createElement("p");
+        const activityDivEL = document.createElement("div");
+        const itemsDiv = document.createElement("div")
+        const editActivtyDiv = document.createElement("div")
+        const deleteActivityDiv = document.createElement("div")
+        const doneActivityDiv = document.createElement("div")
+
+
+        const editPar = document.createElement("p")
+        const deletePar = document.createElement("p")
+        const donePar = document.createElement("p")
+
+        editPar.textContent = "✏";
+        deletePar.textContent = "🗑";
+        donePar.textContent = "✔";
+
+        activityDivEL.style.display = "flex";
+        activityPar.textContent = value;
+        activityPar.id = "activityValue";
+        activityDivEL.className = "activity";
+
+        editActivtyDiv.className = "editActivty";
+        deleteActivityDiv.className = "deleteActivity";
+        doneActivityDiv.className = "doneActivity";
+
+        itemsDiv.className = "items";
+
+
+        editInput.addEventListener("input", function(){
+            editInputValidation()
+            
+        });      
+
+        editActivtyDiv.addEventListener("click", function(){
+            editInputAct()
+            const givenValue = value;
+
+            editInput.value = givenValue;
+            /* alert(`Index is at ${activities.indexOf(activities[i])}`); */
+       /*  });
+
+
+
+        editActivtyDiv.appendChild(editPar)
+        deleteActivityDiv.appendChild(deletePar)
+        doneActivityDiv.appendChild(donePar)
+        itemsDiv.appendChild(editActivtyDiv)
+        itemsDiv.appendChild(deleteActivityDiv)
+        itemsDiv.appendChild(doneActivityDiv)
+        activityDivEL.appendChild(activityPar);
+        activityDivEL.appendChild(itemsDiv);
+        activityContainer.appendChild(activityDivEL); */
+     
     console.log(activities)
 }
+
+export function editInputAct() {
+    activityInput.style.display = "none";
+    editInput.style.display = "flex";
+}
+
+
+export function editButtonEnable() {
+    profileDiv.style.display = "none";
+    editActivityBtn.style.display = "block";    
+}
+
+
+export function editInputValidation() {
+    
+    if (editInput.value.trim().length <= 0) {
+        profileDiv.style.display = "flex";
+        editActivityBtn.style.display = "none";
+    }
+
+    if (editInput.value.trim().length > 0) {
+        profileDiv.style.display = "none";
+        editActivityBtn.style.display = "block";
+    }
+}
+

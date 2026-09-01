@@ -316,6 +316,8 @@ body {
     
     
 }
+
+
 #editActivity{
     display: none;
 }
@@ -327,6 +329,7 @@ body {
 
 
 .items .editActivty, .deleteActivity, .doneActivity {
+    cursor: pointer;
     padding: .7rem;
     border: 1px solid #fff;
 }
