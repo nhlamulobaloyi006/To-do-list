@@ -1,21 +1,13 @@
-import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv, profilePic, profileDiv, editActivityBtn, editInput} from "./script.js";
+import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv, profilePic, profileDiv, editActivityBtn, editInput, taskCount, remainingCount, completedCount, totalCount} from "./script.js";
 import { validateUsername, validateEmail, disableByDefault, validateInput, dashboard, userProfile, hideDashboard, showDashboard, enableSubmitBtn, renderTaskBtn, editInputAct, editInputValidation, editButtonEnable} from "./script.js";
 
 
 export let loginCredentials = []
 export let activities = []
-let totalActivityCount = []
+const taskCompleted = []
 let editIndex = []
 
 
-function getLength() {
-    const lengthTxt = activities.length
-
-    console.log(lengthTxt);
-    
-}
-
-getLength();
 
 function getUserCredentials() {
     const userCredentials = localStorage.getItem("loginCredentials");
@@ -117,6 +109,10 @@ function loadActivities() {
                 
             });
             
+            doneActivityDiv.addEventListener("click", ()=>{
+                itemsDiv.style.display = "none";
+                activityPar.classList.add("done");
+            });
     
             editActivtyDiv.appendChild(editPar)
             deleteActivityDiv.appendChild(deletePar)
@@ -139,13 +135,25 @@ function loadActivities() {
 
 loadActivities() 
 
+function updateDashboard() {
+    if (taskCompleted.length === 0){
+        completedCount.textContent = 0;
+    }
+    else {
+        completedCount = taskCompleted.length;
+    }
+}
+
+updateDashboard()
+
 function dashboardInfo() {
+
+    updateDashboard();
 
     taskCount.textContent = "";
 
     taskCount.textContent = activities.length;
     remainingCount.textContent = activities.length;
-    completedCount.textContent = activities.length;
     totalCount.textContent = activities.length;
 
     console.log("Thia for ac");
@@ -189,7 +197,7 @@ dashboardInput.addEventListener("click", function(){
 });
 
 profileDiv.addEventListener("click", function(){
-    loadActivities();
+   loadActivities();
    showDashboard();
    dashboardInfo();
 });
