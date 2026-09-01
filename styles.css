@@ -263,6 +263,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0 .5rem 0 0;
+    color: yellow;
     border: 1px solid #000;
     border-radius: 50%;
     background-color: blue;
@@ -315,9 +316,14 @@ body {
     
     
 }
-#editActivity {
+#editActivity{
     display: none;
 }
+
+ .edit-input {
+    display: none;
+ }
+
 
 
 .items .editActivty, .deleteActivity, .doneActivity {
@@ -331,4 +337,12 @@ body {
 
 .no-cursor {
     cursor: not-allowed;
+}
+
+.enable {
+    display: flex;
+}
+
+.disable {
+    display: none;
 }

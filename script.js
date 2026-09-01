@@ -1,3 +1,5 @@
+import { loginCredentials, activities } from "./main.js";
+
 //Parent-divs
 export const welcomeMain = document.querySelector(".welcome-main");
 export const dashboardMain = document.querySelector(".dashboard-main");
@@ -29,6 +31,7 @@ export const totalCount = document.getElementById("totalCount");
 export const dashboardInput = document.getElementById("dashboardInput");
 export const activityValue = document.getElementById("activityValue");
 export const activityInput = document.getElementById("activityInput");
+export const editInput = document.querySelector(".edit-input");
 export const profilePic = document.getElementById("profilePic");
 
 export function disableByDefault() {
@@ -105,4 +108,49 @@ export function dashboard() {
     location.reload();
 }
 
+export function userProfile() {
+    const username = loginCredentials[0]["username"];
+    profilePic.textContent = username[0].toUpperCase();
+}
 
+export function hideDashboard() {
+    dashboardMain.classList.add("disable");
+    activityMain.classList.add("enable");
+}
+
+export function showDashboard() {
+    activityMain.classList.remove("enable");
+    dashboardMain.classList.remove("disable");
+}
+
+export function enableSubmitBtn() {
+    if (activityInput.value.trim().length > 0) {
+        addActivityBtn.disabled = false;
+        addActivityBtn.style.display = "block";
+        profileDiv.style.display = "none";
+        
+    }
+    if (activityInput.value.trim().length <= 0) {
+        addActivityBtn.disabled = true;
+        addActivityBtn.style.display = "none";
+        profileDiv.style.display = "flex";
+        
+    }
+}
+
+export function renderTaskBtn() {
+    const value = activityInput.value;
+    activities.push(value);
+
+
+    const activityPar = document.createElement("p");
+    const activityDivEL = document.createElement("div");
+    activityDivEL.style.display = "flex";
+    activityPar.textContent = value;
+    activityPar.id = "activityValue";
+    activityDivEL.className = "activity";
+
+    activityDivEL.appendChild(activityPar);
+    activityContainer.appendChild(activityDivEL);
+    console.log(activities)
+}

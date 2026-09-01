@@ -1,176 +1,141 @@
-import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv, profilePic, profileDiv, editActivityBtn} from "./script.js";
-import { validateUsername, validateEmail, disableByDefault, validateInput, dashboard} from "./script.js";
+import { welcomeMain, dashboardMain, activityMain, activityContainer, usernameMsg, emailMsg, username, email, submitBtn, taskCount, remainingCount, completedCount, totalCount, dashboardInput , activityDiv, addActivityBtn, activityValue, activityInput, itemsDiv, profilePic, profileDiv, editActivityBtn, editInput} from "./script.js";
+import { validateUsername, validateEmail, disableByDefault, validateInput, dashboard, userProfile, hideDashboard, showDashboard, enableSubmitBtn, renderTaskBtn} from "./script.js";
 
-let storeCredentials = []
-let profile = []
-let dashboardInfo = []
-let activities = []
+export let loginCredentials = []
+export let activities = []
+let totalActivityCount = []
 
-function profilePicture(getValue) {
-    profilePic.textContent = getValue;
-}
-
-
-
-disableByDefault()
 
 function getUserCredentials() {
-    const load = localStorage.getItem("userlogin");
+    const userCredentials = localStorage.getItem("loginCredentials");
 
-    if (load) {
-        const convert = JSON.parse(localStorage.getItem("userlogin"));
-        console.log(convert);
-        profile = [convert]
-        storeCredentials = [...convert]
-        profilePicture(storeCredentials[0]["username"][0].toUpperCase());
-        console.log(storeCredentials)
-        welcomeMain.style.display = "none";
-        dashboardMain.style.display = "flex";
-    } else {
-        welcomeMain.style.display = "flex";
+    if (userCredentials) {
+        const convert = JSON.parse(localStorage.getItem("loginCredentials"));
+        loginCredentials = [...convert]
+
+        welcomeMain.classList.add("disable");
+        dashboardMain.classList.add("enable");
+
+        userProfile();
     }
+
+    console.log(loginCredentials)
 }
 
-getUserCredentials();
+getUserCredentials()
 
-function getActivities(){
-    const load = localStorage.getItem("activities");
+function loadActivities() {
+    const savedActivity = localStorage.getItem("activities");
 
-    if (load) {
-        const convert = JSON.parse(localStorage.getItem("activities"));
+    if (savedActivity) {
+        const convert  = JSON.parse(localStorage.getItem("activities"));
         activities = [...convert]
-        console.log(convert);
     }
 
     for (let i = 0; i < activities.length; i++) {
-        taskCount.textContent = activities.length;
-        remainingCount.textContent = activities.length;
-        totalCount.textContent = activities.length;
         
-        manipulateTask(activities[i]);
+        const activityPar = document.createElement("p");
+        const activityDivEL = document.createElement("div");
+        const itemsDiv = document.createElement("div")
+        const editActivtyDiv = document.createElement("div")
+        const deleteActivityDiv = document.createElement("div")
+        const doneActivityDiv = document.createElement("div")
+
+
+        activityDivEL.style.display = "flex";
+        activityPar.textContent = activities[i];
+        activityPar.id = "activityValue";
+        activityDivEL.className = "activity";
+
+        editActivtyDiv.className = "editActivty";
+        deleteActivityDiv.className = "deleteActivty";
+        doneActivityDiv.className = "doneActivty";
+
+        itemsDiv.className = "items"
+
+        itemsDiv.appendChild(editActivtyDiv)
+        itemsDiv.appendChild(deleteActivityDiv)
+        itemsDiv.appendChild(doneActivityDiv)
+        activityDivEL.appendChild(activityPar);
+        activityContainer.appendChild(activityDivEL);
+        activityContainer.appendChild(itemsDiv);
+        
     }
-}
 
-getActivities()
-
-document.addEventListener("DOMContentLoaded", ()=>{
-    username.addEventListener("input", () => {
-        validateUsername()
-    });
-    email.addEventListener("input", () => {
-        validateEmail()
-    });
-    submitBtn.addEventListener("click", () =>{
-        alert("Account was created successfully");
-        welcomeMain.style.display = "none";
-        dashboardMain.style.display = "flex";
-        const savedCredentials = {
-            username: username.value,
-            email: email.value
-        }
-        storeCredentials.push(savedCredentials)
-        console.log(storeCredentials)
-        localStorage.setItem("userlogin", JSON.stringify(storeCredentials));
-        
-    });
-});
-
-document.addEventListener("DOMContentLoaded", ()=>{
-    dashboardInput.addEventListener("click", ()=>{
-        activityMain.style.display = "flex"; 
-        dashboardMain.style.display = "none";
-        welcomeMain.style.display = "none"; 
-    });
-    profileDiv.addEventListener("click", function(){
-        dashboard();
-    });
-
-});
-
-
-
-function manipulateTask(newValue) {
-       
-    const activityDiv = document.createElement("div");
-    const newActivityValue = document.createElement("p");
-    const editActivty = document.createElement("p");
-    const deleteActivity = document.createElement("p");
-    const doneActivity = document.createElement("p");
-    const newItemsDiv = document.createElement("div");
-
-
-    editActivty.textContent = "✏";
-    editActivty.className = "editActivty";
-    deleteActivity.textContent = "🗑";
-    deleteActivity.className = "deleteActivity";
-    doneActivity.textContent = "✔";
-    doneActivity.className = "doneActivity";
-
-    newItemsDiv.className = "items";
-
-    newActivityValue.id = "activityValue"
-    newActivityValue.textContent = newValue;
-
-    activityDiv.className = "activity";
-
-    activityDiv.style.display = "flex";
-
-    editActivty.addEventListener("click", ()=>{
-        addActivityBtn.style.display = "none";
-        profileDiv.style.display = "none"; 
-        editActivityBtn.style.display = "block"
-        const editValue = activityInput;
-        editValue.value = newValue;
-
-        editActivityBtn.addEventListener("click",()=>{
-            const clearInput = document.getElementById("activityInput");
-            newActivityValue.textContent = editValue.value;
-            editActivityBtn.style.display = "none";
-            
-
-            clearInput.value = "";
-        })
-    })
-
-    newItemsDiv.appendChild(editActivty)
-    newItemsDiv.appendChild(deleteActivity)
-    newItemsDiv.appendChild(doneActivity)
-
+    console.log(activities);
     
-    activityDiv.appendChild(newActivityValue)
-    activityDiv.appendChild(newItemsDiv)
-    activityContainer.appendChild(activityDiv)
-
-    newActivityValue.scrollIntoView({
-        behavior:"smooth",
-        block:"end"
-    })
-
 }
 
-function renderTask() {
-    const value = activityInput.value;
-    activities.push(value);
+loadActivities() 
 
-    console.log(activities)
-    manipulateTask(value);     
+function dashboardInfo() {
+    taskCount.textContent = activities.length;
+    remainingCount.textContent = activities.length;
+    completedCount.textContent = activities.length;
+    totalCount.textContent = activities.length;
+}
+
+dashboardInfo()
+
+disableByDefault()
+username.addEventListener("input", function(){
+    validateUsername();
+});
+
+email.addEventListener("input", function(){
+    validateEmail();
+});
+
+submitBtn.addEventListener("click", ()=>{
+   welcomeMain.classList.add("disable"); 
+   dashboardMain.classList.add("enable");
+
+   const loginDetails = 
+   {
+    username: username.value,
+    email: email.value
+   }
+   loginCredentials.push(loginDetails);
+
+   localStorage.setItem("loginCredentials", JSON.stringify(loginCredentials));
+
+   userProfile();
+});
+
+disableByDefault();
+
+dashboardInput.addEventListener("click", function(){
+    hideDashboard();
+});
+
+profileDiv.addEventListener("click", function(){
+   showDashboard();
+});
+
+activityInput.addEventListener("input", function(){
+    enableSubmitBtn();
+
+});
+
+addActivityBtn.addEventListener("click", function(){
+    const clearInput = document.getElementById("activityInput");
+    renderTaskBtn();
+
+    clearInput.value = '';
+    enableSubmitBtn();
+
     localStorage.setItem("activities", JSON.stringify(activities));
+    dashboardInfo();
+    disableByDefault();
+});
 
-}
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    addActivityBtn.addEventListener("click", function(){
-        const clearInput = document.getElementById("activityInput");
-        renderTask();
-
-        clearInput.value = "";
+    document.addEventListener("keydown", (e)=>{
+        if (e.key === "Enter") {
+            addActivityBtn.click();
+            
+            
+        }
+        enableSubmitBtn();
         disableByDefault();
-    });
-    activityInput.addEventListener("input", function(){
-        validateInput();
-    });
-})
-
-
-
-
+    })
