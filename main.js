@@ -110,8 +110,32 @@ function loadActivities() {
             });
             
             doneActivityDiv.addEventListener("click", ()=>{
+                const checkIndex = activities.indexOf(activities[i]);
                 itemsDiv.style.display = "none";
                 activityPar.classList.add("done");
+
+                setTimeout(()=>{
+                    activityDivEL.remove()
+                }, 2000)
+
+            
+
+                
+
+                if (checkIndex > -1) {
+                    activities.splice(checkIndex, 1)
+                }
+                    activityContainer.appendChild(activityDivEL);
+
+                    activities.splice(checkIndex, 0)
+            
+                
+
+                localStorage.setItem("activities", JSON.stringify(activities));
+
+                
+
+        
             });
     
             editActivtyDiv.appendChild(editPar)
@@ -212,13 +236,14 @@ addActivityBtn.addEventListener("click", function(){
     const clearInput = document.getElementById("activityInput");
     renderTaskBtn();
 
-    clearInput.value = '';
+    
     enableSubmitBtn();
 
     localStorage.setItem("activities", JSON.stringify(activities));
     dashboardInfo();
     disableByDefault();
     loadActivities();
+    clearInput.value = '';
 });
 
 
