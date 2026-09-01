@@ -8,7 +8,14 @@ let totalActivityCount = []
 let editIndex = []
 
 
+function getLength() {
+    const lengthTxt = activities.length
 
+    console.log(lengthTxt);
+    
+}
+
+getLength();
 
 function getUserCredentials() {
     const userCredentials = localStorage.getItem("loginCredentials");
@@ -134,24 +141,15 @@ loadActivities()
 
 function dashboardInfo() {
 
-    loadActivities();
+    taskCount.textContent = "";
 
-    if (activities.length === 0 || []) {
-        taskCount.textContent = 0;
-        remainingCount.textContent = 0;
-        completedCount.textContent = 0;
-        totalCount.textContent = 0;
-    }
-    
-    if (activities.length > 0) {
-        taskCount.textContent = activities.length;
-        remainingCount.textContent = activities.length;
-        completedCount.textContent = activities.length;
-        totalCount.textContent = activities.length;
-    }
+    taskCount.textContent = activities.length;
+    remainingCount.textContent = activities.length;
+    completedCount.textContent = activities.length;
+    totalCount.textContent = activities.length;
 
     console.log("Thia for ac");
-    console.log(activities);
+    console.log(activities.length);
     
     
 }
@@ -193,6 +191,7 @@ dashboardInput.addEventListener("click", function(){
 profileDiv.addEventListener("click", function(){
     loadActivities();
    showDashboard();
+   location.reload();
 });
 
 activityInput.addEventListener("input", function(){
@@ -230,11 +229,11 @@ editActivityBtn.addEventListener("click", ()=>{
     activityInput.style.display = "flex";
     enableSubmitBtn(); 
     console.log(activities)
-                
+       
+    dashboardInfo()         
     localStorage.setItem("activities", JSON.stringify(activities));
     loadActivities();
 
-    dashboardInfo()
 });
 
      
