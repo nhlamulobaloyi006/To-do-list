@@ -191,7 +191,7 @@ dashboardInput.addEventListener("click", function(){
 profileDiv.addEventListener("click", function(){
     loadActivities();
    showDashboard();
-   location.reload();
+   dashboardInfo();
 });
 
 activityInput.addEventListener("input", function(){
