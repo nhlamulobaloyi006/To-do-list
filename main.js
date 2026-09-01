@@ -4,7 +4,7 @@ import { validateUsername, validateEmail, disableByDefault, validateInput, dashb
 
 export let loginCredentials = []
 export let activities = []
-const taskCompleted = []
+let taskCompleted = []
 let editIndex = []
 
 
@@ -89,6 +89,8 @@ function loadActivities() {
 
             deleteActivityDiv.addEventListener("click", ()=>{
                 /* activityDivEL.remove(); */
+               
+
                 const checkIndex = activities.indexOf(activities[i]);
 
                 if (checkIndex > -1) {
@@ -104,12 +106,15 @@ function loadActivities() {
                 
                 console.log(activities)
 
-                localStorage.setItem("activities", JSON.stringify(activities));
+                localStorage.clear("activities");
                 loadActivities();
                 
             });
             
             doneActivityDiv.addEventListener("click", ()=>{
+                let count = 0;
+                count++
+                taskCompleted.push(count)
                 const checkIndex = activities.indexOf(activities[i]);
                 itemsDiv.style.display = "none";
                 activityPar.classList.add("done");
@@ -129,9 +134,11 @@ function loadActivities() {
 
                     activities.splice(checkIndex, 0)
             
-                
+              
+                console.log(taskCompleted)
 
                 localStorage.setItem("activities", JSON.stringify(activities));
+                localStorage.setItem("taskCompleted", JSON.stringify(taskCompleted));
 
                 
 
@@ -160,11 +167,27 @@ function loadActivities() {
 loadActivities() 
 
 function updateDashboard() {
+
+    const saved = localStorage.getItem("taskCompleted");
+
+    if (saved) {
+        const convert = JSON.parse(localStorage.getItem("taskCompleted"));
+        taskCompleted = [...convert]
+        console.log("tis iscon");
+        
+        console.log(convert.length);
+        
+
+        console.log(taskCompleted);
+        
+    }
+
     if (taskCompleted.length === 0){
         completedCount.textContent = 0;
     }
-    else {
-        completedCount = taskCompleted.length;
+    
+    if (taskCompleted.length > 0) {
+        completedCount.textContent = taskCompleted.length;
     }
 }
 
@@ -223,6 +246,7 @@ dashboardInput.addEventListener("click", function(){
 profileDiv.addEventListener("click", function(){
    loadActivities();
    showDashboard();
+   updateDashboard();
    dashboardInfo();
 });
 
@@ -240,6 +264,7 @@ addActivityBtn.addEventListener("click", function(){
     enableSubmitBtn();
 
     localStorage.setItem("activities", JSON.stringify(activities));
+    updateDashboard();
     dashboardInfo();
     disableByDefault();
     loadActivities();
@@ -263,7 +288,8 @@ editActivityBtn.addEventListener("click", ()=>{
     enableSubmitBtn(); 
     console.log(activities)
        
-    dashboardInfo()         
+    updateDashboard();
+    dashboardInfo();         
     localStorage.setItem("activities", JSON.stringify(activities));
     loadActivities();
 
