@@ -91,7 +91,7 @@ function loadActivities() {
                 /* activityDivEL.remove(); */
                
 
-                const checkIndex = activities.indexOf(activities);
+                const checkIndex = activities.indexOf(activities[i]);
 
                 if (checkIndex > -1) {
                     activities.splice(checkIndex, 1)
