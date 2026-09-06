@@ -90,6 +90,9 @@ function loadActivities() {
                 //alert(`Index is at ${activities.indexOf(activities[i])}`);
                 loadActivities();
 
+                
+              
+
             });
 
             deleteActivityDiv.addEventListener("click", ()=>{
@@ -146,6 +149,7 @@ function loadActivities() {
                 localStorage.setItem("taskCompleted", JSON.stringify(taskCompleted));
             });
     
+         
             editActivtyDiv.appendChild(editPar)
             deleteActivityDiv.appendChild(deletePar)
             doneActivityDiv.appendChild(donePar)
@@ -270,6 +274,8 @@ addActivityBtn.addEventListener("click", function(){
     disableByDefault();
     loadActivities();
     clearInput.value = '';
+
+    
 });
 
 
