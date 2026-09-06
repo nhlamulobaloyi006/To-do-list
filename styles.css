@@ -226,8 +226,10 @@ body {
 
 .activity-inputs  {
     display: flex;
-    border: 1px solid red; 
+    border: 1px solid #000; 
+    border-radius: .5rem;
     width: 100%;
+    padding: .5rem;
 }
 
 .activity-inputs  input {
@@ -280,13 +282,16 @@ body {
 }
 
 .activities-container {
+    display: flex;
+    flex-direction: column-reverse;
     color: #fff;
     padding: .5rem;
     margin: 2.5rem 0 0 0;
     width: 100%;
     overflow: scroll;
+    scroll-behavior: smooth;
     max-height: 350px;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
 }
 
 #activityValue {
@@ -306,7 +311,7 @@ body {
     width: 100%;
     margin: 0 0 1rem 0;
     flex-wrap: wrap;
-    border: 1px solid red;
+    border: 1px solid #000;
     border-radius: .5rem;
     background-color: blue;
     border-radius: .5rem;
