@@ -83,17 +83,17 @@ function loadActivities() {
                 editInput.value = value;
                 const checkIndex = activities.indexOf(activities[i]);
                 editIndex = [checkIndex]
-                alert(`Index is at ${activities.indexOf(activities[i])}`);
+                //alert(`Index is at ${activities.indexOf(activities[i])}`);
                 loadActivities();
 
             });
 
             deleteActivityDiv.addEventListener("click", ()=>{
                 
-                alert(activities[i]);
+                //alert(activities[i]);
                 const value = activities[i];
                 const checkIndex = activities.indexOf(activities[i]);
-                alert(checkIndex)
+                //alert(checkIndex)
                 activities.splice(checkIndex, 1);
 
                 localStorage.setItem("activities", JSON.stringify(activities));
@@ -114,10 +114,10 @@ function loadActivities() {
                 itemsDiv.style.display = "none";
                 activityPar.classList.add("done");
 
-                alert(activities[i]);
+                //alert(activities[i]);
                 const value = activities[i];
                 const checkIndex = activities.indexOf(activities[i]);
-                alert(checkIndex)
+                //alert(checkIndex)
                 activities.splice(checkIndex, 1);
 
                  setTimeout(()=>{
@@ -194,7 +194,7 @@ function dashboardInfo() {
 
     taskCount.textContent = activities.length;
     remainingCount.textContent = activities.length;
-    totalCount.textContent = activities.length;
+    totalCount.textContent = taskCompleted.length;
 
     console.log("Thia for ac");
     console.log(activities.length);
