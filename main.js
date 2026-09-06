@@ -120,31 +120,22 @@ function loadActivities() {
                 alert(checkIndex)
                 activities.splice(checkIndex, 1);
 
-                localStorage.setItem("activities", JSON.stringify(activities));
-                loadActivities();
-
+                 setTimeout(()=>{
+                    localStorage.setItem("activities", JSON.stringify(activities));
+                    loadActivities();
+                }, 1500);
+            
+                
 
                 console.log("array");
                 
                 console.log(activities);
-
-    
-
-            
-
-                
-
                 
             
-              
                 console.log(taskCompleted)
 
                 
                 localStorage.setItem("taskCompleted", JSON.stringify(taskCompleted));
-
-                
-
-        
             });
     
             editActivtyDiv.appendChild(editPar)
