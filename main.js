@@ -9,13 +9,6 @@ let editIndex = []
 
 
 
-function notification() {
-    Notification.requestPermission().then(permission => {
-        console.log(permission);
-        new Notification(`Welcome back ${loginCredentials[0]["username"]}`);
-    });
-}
-
 
 
 function getUserCredentials() {
@@ -29,7 +22,7 @@ function getUserCredentials() {
         dashboardMain.classList.add("enable");
 
         userProfile();
-        notification();
+        
     }
     
     console.log(loginCredentials)
@@ -86,6 +79,7 @@ function loadActivities() {
             });      
 
             editActivtyDiv.addEventListener("click", function(){
+                navigator.vibrate(200);
                 editButtonEnable();
                 editInputAct()
                 const value = activities[i];
@@ -101,6 +95,7 @@ function loadActivities() {
             deleteActivityDiv.addEventListener("click", ()=>{
                 
                 //alert(activities[i]);
+                navigator.vibrate(200);
                 const value = activities[i];
                 const checkIndex = activities.indexOf(activities[i]);
                 //alert(checkIndex)
@@ -117,6 +112,7 @@ function loadActivities() {
             });
             
             doneActivityDiv.addEventListener("click", ()=>{
+                navigator.vibrate(200);
                 let count = 0;
                 count++
                 taskCompleted.push(count)
