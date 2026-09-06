@@ -84,30 +84,25 @@ function loadActivities() {
                 const checkIndex = activities.indexOf(activities[i]);
                 editIndex = [checkIndex]
                 alert(`Index is at ${activities.indexOf(activities[i])}`);
+                loadActivities();
 
             });
 
             deleteActivityDiv.addEventListener("click", ()=>{
-                /* activityDivEL.remove(); */
-               
-
+                
+                alert(activities[i]);
+                const value = activities[i];
                 const checkIndex = activities.indexOf(activities[i]);
+                alert(checkIndex)
+                activities.splice(checkIndex, 1);
 
-                if (checkIndex > -1) {
-                    activities.splice(checkIndex, 1)
-                }
-
-                activityDivEL.remove();
-
-                
-                console.log("Button clicked")
-                console.log(checkIndex)
-
-                
-                console.log(activities)
-
-                localStorage.clear("activities");
+                localStorage.setItem("activities", JSON.stringify(activities));
                 loadActivities();
+
+
+                console.log("array");
+                
+                console.log(activities);
                 
             });
             
@@ -115,29 +110,36 @@ function loadActivities() {
                 let count = 0;
                 count++
                 taskCompleted.push(count)
-                const checkIndex = activities.indexOf(activities[i]);
+                
                 itemsDiv.style.display = "none";
                 activityPar.classList.add("done");
 
-                setTimeout(()=>{
-                    activityDivEL.remove()
-                }, 2000)
+                alert(activities[i]);
+                const value = activities[i];
+                const checkIndex = activities.indexOf(activities[i]);
+                alert(checkIndex)
+                activities.splice(checkIndex, 1);
+
+                localStorage.setItem("activities", JSON.stringify(activities));
+                loadActivities();
+
+
+                console.log("array");
+                
+                console.log(activities);
+
+    
 
             
 
                 
 
-                if (checkIndex > -1) {
-                    activities.splice(checkIndex, 1)
-                }
-                    activityContainer.appendChild(activityDivEL);
-
-                    activities.splice(checkIndex, 0)
+                
             
               
                 console.log(taskCompleted)
 
-                localStorage.setItem("activities", JSON.stringify(activities));
+                
                 localStorage.setItem("taskCompleted", JSON.stringify(taskCompleted));
 
                 
