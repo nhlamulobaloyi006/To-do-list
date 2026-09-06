@@ -112,7 +112,7 @@ body {
     text-align: center;
     padding: .8rem ;
     border-radius: .5rem;
-    border: 1px solid #000;
+    border: none;
 }
 
 .grid-layout {
