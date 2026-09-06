@@ -9,6 +9,15 @@ let editIndex = []
 
 
 
+function notification() {
+    Notification.requestPermission().then(permission => {
+        console.log(permission);
+        new Notification(`Welcome back ${loginCredentials[0]["username"]}`);
+    });
+}
+
+
+
 function getUserCredentials() {
     const userCredentials = localStorage.getItem("loginCredentials");
 
@@ -20,6 +29,7 @@ function getUserCredentials() {
         dashboardMain.classList.add("enable");
 
         userProfile();
+        notification();
     }
     
     console.log(loginCredentials)
@@ -113,6 +123,8 @@ function loadActivities() {
                 
                 itemsDiv.style.display = "none";
                 activityPar.classList.add("done");
+
+                console.log(navigator)
 
                 //alert(activities[i]);
                 const value = activities[i];
