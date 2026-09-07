@@ -300,7 +300,7 @@ body {
 
 #activityValue {
     overflow-wrap: break-word;
-    max-width: 265px;
+    max-width: 200px;
     width: fit-content;
     padding: .5rem;
     border-radius: .5rem;
