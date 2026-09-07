@@ -8,9 +8,16 @@ let taskCompleted = []
 let editIndex = []
 let icons = ["/icons/edit_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg","/icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg","/icons//done_all_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"]
 
+let isFour = false;
 
 
+function show() {
+    if (activities.length > 0) {
+        activityContainer.classList.add("add");
+    }
+}
 
+show()
 
 function getUserCredentials() {
     const userCredentials = localStorage.getItem("loginCredentials");
@@ -115,6 +122,9 @@ function loadActivities() {
                 localStorage.setItem("activities", JSON.stringify(activities));
                 loadActivities();
 
+                if(activities.length === 0) {
+                    alert("Thank you for using our app");
+                }
 
                 console.log("array");
                 
@@ -281,7 +291,9 @@ addActivityBtn.addEventListener("click", function(){
     dashboardInfo();
     disableByDefault();
     loadActivities();
+    show();
     clearInput.value = '';
+    
 
     
 });
