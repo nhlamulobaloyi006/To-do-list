@@ -324,7 +324,7 @@ editActivityBtn.addEventListener("click", ()=>{
 
      
 
-document.addEventListener("keydown", (e)=>{
+window.addEventListener("keydown", (e)=>{
     if (e.key === "Enter") {
             addActivityBtn.click();
             
@@ -333,4 +333,6 @@ document.addEventListener("keydown", (e)=>{
     enableSubmitBtn();
     disableByDefault();
 })
+
+
 
