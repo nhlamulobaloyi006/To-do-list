@@ -6,6 +6,7 @@ export let loginCredentials = []
 export let activities = []
 let taskCompleted = []
 let editIndex = []
+let icons = ["/icons/edit_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg","/icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg","/icons//done_all_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"]
 
 
 
@@ -47,6 +48,9 @@ function loadActivities() {
             const deleteActivityDiv = document.createElement("div")
             const doneActivityDiv = document.createElement("div")
             const editActBtn = document.createElement("button")
+            const editIcon = document.createElement("img");
+            const deleteIcon = document.createElement("img");
+            const doneIcon = document.createElement("img");
 
 
             const editPar = document.createElement("p")
@@ -61,6 +65,10 @@ function loadActivities() {
             editPar.textContent = "✏";
             deletePar.textContent = "🗑";
             donePar.textContent = "✔";
+
+            editIcon.src = icons[0];
+            deleteIcon.src = icons[1];
+            doneIcon.src = icons[2];
 
             activityDivEL.style.display = "flex";
             activityPar.textContent = activities[i];
@@ -150,9 +158,9 @@ function loadActivities() {
             });
     
          
-            editActivtyDiv.appendChild(editPar)
-            deleteActivityDiv.appendChild(deletePar)
-            doneActivityDiv.appendChild(donePar)
+            editActivtyDiv.appendChild(editIcon)
+            deleteActivityDiv.appendChild(deleteIcon)
+            doneActivityDiv.appendChild(doneIcon)
             itemsDiv.appendChild(editActivtyDiv)
             itemsDiv.appendChild(deleteActivityDiv)
             itemsDiv.appendChild(doneActivityDiv)
