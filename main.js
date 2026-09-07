@@ -64,7 +64,7 @@ function loadActivities() {
             const deletePar = document.createElement("p")
             const donePar = document.createElement("p")
 
-            editActBtn.textContent = "ED";
+            editActBtn.textContent = "GO";
             editActBtn.id = "editActivityBtn";
 
             
