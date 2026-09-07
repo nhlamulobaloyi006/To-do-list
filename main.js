@@ -6,7 +6,7 @@ export let loginCredentials = []
 export let activities = []
 let taskCompleted = []
 let editIndex = []
-let icons = ["/icons/edit_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg","/icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg","/icons//done_all_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"]
+let icons = ["/icons/edit_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg","/icons/delete_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg","/icons/done_all_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg"]
 
 let isFour = false;
 

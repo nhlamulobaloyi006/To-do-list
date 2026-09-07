@@ -301,7 +301,7 @@ body {
 
 #activityValue {
     overflow-wrap: break-word;
-    max-width: 200px;
+    max-width: 230px;
     width: fit-content;
     padding: .5rem;
     border-radius: .5rem;
@@ -347,7 +347,7 @@ body {
 
 .items .editActivty, .deleteActivity, .doneActivity {
     cursor: pointer;
-    padding: .7rem;
+    padding: .3rem;
     border: 1px solid #fff;
 }
 
@@ -372,3 +372,85 @@ body {
     text-decoration: line-through;
     font-style: italic;
 }
+
+/* @media (max-width: 600px) {
+    #activityValue {
+        overflow-wrap: break-word;
+        width: fit-content;
+        max-width: 150px;
+    }
+} */
+
+
+@media (min-width: 200px) and (max-width: 600px) {
+    
+    .activities-container .activity {
+        display: none;
+        justify-content: center;
+        align-items: center; 
+        padding: .5rem;
+        width: 100%;
+        margin: 0 0 1rem 0;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        border: 1px solid #000;
+        border-radius: .5rem;
+        background-color: blue;
+        border-radius: .5rem;
+    }
+    #activityValue {
+        overflow-wrap: break-word;
+        width: fit-content;
+        max-width: 100%;
+        margin: 1rem 0 0 0;
+    }
+    .activities-container .activity .items {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    background-color: #333;
+    width: fit-content;
+    border-radius: .5rem;
+    margin: 1rem 1rem 0 1rem;
+    gap: .5rem;
+    
+    
+    }
+}
+
+/* 
+@media (min-width: 200px) and (max-width: 300px) {
+    
+    .activities-container .activity {
+        display: none;
+        justify-content: center;
+        align-items: center; 
+        padding: .5rem;
+        width: 100%;
+        margin: 0 0 1rem 0;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        border: 1px solid #000;
+        border-radius: .5rem;
+        background-color: blue;
+        border-radius: .5rem;
+    }
+    #activityValue {
+        overflow-wrap: break-word;
+        width: fit-content;
+        max-width: 100%;
+    }
+    .activities-container .activity .items {
+    display: flex;
+    border: 1px solid #000;
+    background-color: #333;
+    width: fit-content;
+    border-radius: .5rem;
+    margin: 1rem 1rem;
+    gap: .5rem;
+    
+    
+    }
+}
+
+ */
