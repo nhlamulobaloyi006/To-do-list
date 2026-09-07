@@ -67,7 +67,7 @@ body {
     outline-color: #000;
 }
 
-.welcome-card .inputs .input::placeholder {
+.welcome-card .inputs input::placeholder {
     text-align: center;
 }
 
