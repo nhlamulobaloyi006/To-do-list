@@ -23,7 +23,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    border: 1px solid red;
+    border: 1px solid #000;
     border-radius: 16px;
     width: 95%;
     min-width: 200px;
@@ -43,7 +43,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 2rem 0 0 0;
-    /* border: 1px solid red; */
+    /* border: 1px solid #000; */
     width: 100%;
 }
 
@@ -55,7 +55,7 @@ body {
 
     font-size: .8rem;
     font-weight: bold;
-    color: red;
+    color: #000;
 }
 
 .welcome-card .inputs input {
@@ -228,9 +228,8 @@ body {
 
 .activity-inputs  {
     display: flex;
-    border: 1px solid red; 
     border-radius: .5rem;
-    border: 1px solid red;
+    border: 1px solid #000;
     width: 100%;
     padding: .5rem;
 }
