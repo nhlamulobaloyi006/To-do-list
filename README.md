@@ -132,4 +132,4 @@ MIT — do whatever you want with it.
 
 ---
 
-**Made with ✅ and vanilla JS by Nhlamulo Baloyi**
+**Made with ❤ and vanilla JS by Nhlamulo Baloyi**
