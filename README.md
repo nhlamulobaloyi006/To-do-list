@@ -1,4 +1,4 @@
-# ✅ Todo App
+# Todo App
 
 A todo app built with vanilla JS — the way I wanted it. Users sign up with a username and email, then land on a personal dashboard where they can add, edit, complete, and delete tasks. Everything's saved to `localStorage`, so nothing gets lost on refresh.
 
